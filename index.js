@@ -26,13 +26,11 @@ module.exports = async (req, res) => {
 
     if (request.original_utterance == nil) {
         resp('Привет! Могу подсказать, чем можно заняться в свободное время. По любой команде придумаю следующую идею. По стоп-слову Хватит прекращу предлагать варианты. Итак, поехали?', false);
-        return;
-    }
+    } else 
 
     if (request.original_utterance.toLowerCase() == 'хватит') {
         resp('Без проблем. Надеюсь, мне удалось подсказать что-то прекрасное. Обращайтесь за новыми идеями. Прекрасного дня!', true);
-        return;
-    }
+    } else 
 
     connect(options, function (error, response, body) {
         if (error || body['name'] == nil) { 
