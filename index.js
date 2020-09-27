@@ -5,13 +5,14 @@ var options = {
     'url': 'https://api.treep.ai/bot/activities/random?count=1',
     'headers': {
         'x-api-key': 'treep_appcraft'
-    }
+    },
+    'json': true
 };
 
 module.exports = async (req, res) => {
     const { request, session, version } = await json(req);
 
-    connect(options, function (error, response) {
+    connect(options, function (error, response, body) {
         if (error) throw new Error(error);
         
         res.end(JSON.stringify(
@@ -19,7 +20,7 @@ module.exports = async (req, res) => {
                 version,
                 session,
                 response: {
-                    text: 'Response',
+                    text: body['name'] || 'К сожалению, сервер недоступен',
                     end_session: false,
                 },
             }
