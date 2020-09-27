@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         }));
     }
 
-    if (request.original_utterance == nil) {
+    if (request.original_utterance == null) {
         resp('Привет! Могу подсказать, чем можно заняться в свободное время. По любой команде придумаю следующую идею. По стоп-слову Хватит прекращу предлагать варианты. Итак, поехали?', false);
     } else 
 
@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
     } else 
 
     connect(options, function (error, response, body) {
-        if (error || body['name'] == nil) { 
+        if (error || body['name'] == null) { 
             resp('К сожалению, сервер недоступен. А без него я ничего не могу сделать. Попробуйте спросить меня пожалуйста позже о том, что хотелось.', true);
         } else {
             var intro = intros[Math.floor(Math.random() * intros.length)];
