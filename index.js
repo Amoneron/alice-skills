@@ -9,6 +9,7 @@ var options = {
     'json': true
 };
 var intros = ['Можно', 'А еще можно было бы', 'Например, можно', 'Как насчет'];
+var stops = ['стоп', 'хватит', 'перестань', 'прекрати'];
 
 module.exports = async (req, res) => {
     const { request, session, version } = await json(req);
@@ -24,11 +25,11 @@ module.exports = async (req, res) => {
         }));
     }
 
-    if (request.original_utterance == null) {
+    if (request.original_utterance == null || request.original_utterance.length == 0) {
         resp('Привет! Могу подсказать, чем можно заняться в свободное время. По любой команде придумаю следующую идею. По стоп-слову Хватит прекращу предлагать варианты. Итак, поехали?', false);
     } else 
 
-    if (request.original_utterance.toLowerCase() == 'хватит') {
+    if (stops.includes(request.original_utterance.toLowerCase())) {
         resp('Без проблем. Надеюсь, мне удалось подсказать что-то прекрасное. Обращайтесь за новыми идеями. Прекрасного дня!', true);
     } else 
 
